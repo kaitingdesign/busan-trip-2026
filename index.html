@@ -690,13 +690,11 @@ function renderPacking(){
   const list=document.getElementById('packList');
   let total=0,done=0;
   list.innerHTML=PACKING.map(sec=>{
-    const rows=sec.items.map(item=>{
+    const rows=sec.items.map((item,ii)=>{
       total++;
       const ck=!!packState[item];
       if(ck)done++;
-      const key=encodeKey(item);
-      return `<div class="pack-item${ck?' done':''}" id="pi-${key}" onclick="togglePack(${JSON.stringify(item)})">
-        <div class="pi-ck">${ck?'✓':''}</div>
+      return `<div class="pack-item${ck?' done':''}" data-item="${item.replace(/"/g,'&quot;')}" onclick="togglePack(this)">
         <div class="pi-name">${item}${ck?'<span class="pi-tag">已確認</span>':''}</div>
       </div>`;
     }).join('');
@@ -712,20 +710,14 @@ function updatePackProgress(done,total){
   document.getElementById('packTotal').textContent=total;
 }
 
-function encodeKey(str){return btoa(unescape(encodeURIComponent(str))).replace(/[^a-zA-Z0-9]/g,'')}
-
-function togglePack(item){
+function togglePack(el){
+  const item=el.dataset.item;
   const newState=!packState[item];
   packState[item]=newState;
   localStorage.setItem('bsn2_pack',JSON.stringify(packState));
-  const key=encodeKey(item);
-  const el=document.getElementById('pi-'+key);
-  if(!el){renderPacking();return;}
-  const ck=el.querySelector('.pi-ck');
   const nm=el.querySelector('.pi-name');
   if(newState){
     el.classList.add('done');
-    ck.textContent='✓';
     if(!nm.querySelector('.pi-tag')){
       const tag=document.createElement('span');
       tag.className='pi-tag';
@@ -734,7 +726,6 @@ function togglePack(item){
     }
   } else {
     el.classList.remove('done');
-    ck.textContent='';
     const tag=nm.querySelector('.pi-tag');
     if(tag)tag.remove();
   }
