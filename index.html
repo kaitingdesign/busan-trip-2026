@@ -35,9 +35,7 @@ body{font-family:'Noto Serif TC','Times New Roman',Times,serif;background:var(--
 .hero-title{font-family:var(--serif);font-size:36px;font-weight:700;line-height:1.1;color:var(--white);letter-spacing:-0.5px;position:relative;z-index:1}
 .hero-title em{font-style:italic;color:var(--gold-light);font-weight:400}
 .hero-script{font-family:var(--script);font-size:22px;color:rgba(201,168,76,0.8);margin-top:6px;position:relative;z-index:1}
-.hero-pills{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;position:relative;z-index:1}
-.pill{border:1px solid rgba(255,255,255,0.18);border-radius:30px;padding:5px 14px;font-size:11px;font-weight:300;color:rgba(255,255,255,0.8);letter-spacing:0.4px}
-.pill.gold{border-color:var(--border-gold);color:var(--gold-light)}
+.pill{display:none}
 
 /* NAV */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(245,242,235,0.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex}
@@ -185,13 +183,15 @@ body{font-family:'Noto Serif TC','Times New Roman',Times,serif;background:var(--
 .pp-ct small{font-family:var(--sans);font-size:12px;font-weight:300;color:var(--mist)}
 .psec{margin-bottom:20px}
 .psec-l{font-size:10px;font-weight:300;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;padding-left:2px}
-.pack-item{display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:6px;cursor:pointer;transition:var(--transition)}
-.pack-item.done{opacity:0.42}
-.pack-item.done .pi-name{text-decoration:line-through}
-.pi-ck{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--mist-light);display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:var(--transition)}
-.pack-item.done .pi-ck{background:#0A192F;border-color:#0A192F;color:var(--white)}
-.pi-name{font-size:13px;font-weight:300;color:var(--charcoal);line-height:1.4}
-
+.pack-item{display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-left:3px solid transparent;border-radius:var(--radius-md);padding:12px 14px;margin-bottom:6px;cursor:pointer;transition:background 0.35s ease,border-color 0.35s ease,transform 0.15s ease}
+.pack-item:active{transform:scale(0.98)}
+.pack-item.done{background:linear-gradient(135deg,#E8F4F0 0%,#F0F8F5 100%);border-color:rgba(46,160,120,0.3);border-left-color:#2EA078}
+.pack-item.done .pi-name{text-decoration:line-through;color:var(--mist)}
+.pi-ck{display:none}
+.pi-name{font-size:13px;font-weight:300;color:var(--charcoal);line-height:1.4;transition:color 0.3s ease}
+.pack-item.done .pi-tag{display:inline-block;font-size:10px;color:#2EA078;margin-left:6px;font-weight:400;opacity:0;animation:fadeTag 0.4s ease 0.15s forwards}
+@keyframes fadeTag{from{opacity:0;transform:translateX(-4px)}to{opacity:1;transform:translateX(0)}}
+.pp-fill{height:100%;background:linear-gradient(90deg,#2EA078,#5DCAA5);border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1)}
 /* INFO */
 .info-page{padding:20px}
 .tip-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:12px;box-shadow:var(--shadow)}
@@ -227,9 +227,8 @@ body{font-family:'Noto Serif TC','Times New Roman',Times,serif;background:var(--
 <header class="hero">
   <div class="hero-glow"></div>
   <div class="hero-eyebrow">Korea · Summer 2026</div>
-  <div class="hero-title">ＢＵＳＡＮ ｜ ８ ＤＡＹＳ</em></div>
-  <div class="hero-pills">
-  </div>
+  <div class="hero-title">BUSAN <em>|</em> 8 DAYS</div>
+  <div class="hero-script">釜山・慶州の旅</div>
 </header>
 
 <div class="page active" id="page-itinerary">
@@ -398,6 +397,39 @@ body{font-family:'Noto Serif TC','Times New Roman',Times,serif;background:var(--
       <div class="tip-row"><strong>海東龍宮寺</strong>　+82 51-722-7744　4:00–20:00</div>
       <div class="tip-row"><strong>Skyline Luge</strong>　+82 51-722-6002　10:00–18:00</div>
     </div></div>
+
+    <div class="tip-card"><div class="tip-hd"><h3>🎁 伴手禮推薦</h3></div><div class="tip-body">
+      <div class="tip-row"><strong>Busan Bada Sand</strong>　釜山海沙香皂，送禮首選，海雲台附近有賣</div>
+      <div class="tip-row"><strong>韓國海苔</strong>　大創、樂天超市、Emart 購入，口味多選擇多</div>
+      <div class="tip-row"><strong>蜂蜜奶油洋芋片</strong>　海太、好麗友系列，台灣較難買到</div>
+      <div class="tip-row"><strong>自然島鹽麵包</strong>　慶州皇理團路名物，現烤限量，當天吃完</div>
+      <div class="tip-row"><strong>元祖黑糖堅果糖餅</strong>　BIFF廣場現做，用油紙包裝帶走</div>
+      <div class="tip-row"><strong>紅豆奶油艾草糕</strong>　富平罐頭市場，冷藏保存約2–3天</div>
+      <div class="tip-row"><strong>人蔘糖 / 高麗人蔘茶</strong>　機場免稅店品質穩定，價格透明</div>
+      <div class="tip-row"><strong>慶州銘果 黃南餅</strong>　慶州傳統糕餅，內餡紅豆口感紮實</div>
+    </div></div>
+
+    <div class="tip-card"><div class="tip-hd"><h3>🛍 購物推薦</h3></div><div class="tip-body">
+      <div class="tip-row"><strong>樂天超市 西面</strong>　零食、泡麵、飲料一次備齊，地下樓層</div>
+      <div class="tip-row"><strong>新世界百貨 Centum City</strong>　世界最大百貨，免稅退稅方便，B1超市必逛</div>
+      <div class="tip-row"><strong>西面地下街</strong>　平價服裝飾品，殺價文化，備現金較有利</div>
+      <div class="tip-row"><strong>Daiso 大創</strong>　韓國版商品獨特，文具、廚具、零食周邊</div>
+      <div class="tip-row"><strong>Olive Young</strong>　韓國最大藥妝連鎖，幾乎所有熱門保養彩妝都有</div>
+      <div class="tip-row"><strong>GS25 / CU / 7-Eleven</strong>　便利商店熱食、飲品、韓版零食隨手買</div>
+      <div class="tip-row"><strong>釜山國際市場 / 南浦洞</strong>　傳統市場，服裝布料批發區，平日人較少</div>
+      <div class="tip-row">退稅提醒：單店消費滿 ₩30,000 可申請退稅，出境前機場辦理</div>
+    </div></div>
+
+    <div class="tip-card"><div class="tip-hd"><h3>💄 美妝推薦</h3></div><div class="tip-body">
+      <div class="tip-row"><strong>Olive Young 獨家品牌</strong>　Mediheal、Round Lab、Anua，台灣代購貴很多</div>
+      <div class="tip-row"><strong>Round Lab 獨島精華</strong>　鎮定保濕，敏感肌適用，Olive Young 必買</div>
+      <div class="tip-row"><strong>Anua 朝鮮薊精華</strong>　控油毛孔，大容量 cp 值高</div>
+      <div class="tip-row"><strong>Beauty of Joseon 朝鮮美女</strong>　防曬系列口碑極佳，質地輕薄不泛白</div>
+      <div class="tip-row"><strong>Laneige 蘭芝 水凝霜</strong>　韓國當地售價約台灣七折</div>
+      <div class="tip-row"><strong>ROMAND 唇釉</strong>　顏色選擇多，霧面 / 水光任選，價格親民</div>
+      <div class="tip-row"><strong>Medicube 膠原蛋白系列</strong>　抗老緊緻，近年韓國熱門品牌</div>
+      <div class="tip-row">小提醒：液態保養品過安檢需放託運，或買機場免稅店版本</div>
+    </div></div>
   </div>
 </div>
 
@@ -539,12 +571,12 @@ const DAYS=[
 ];
 
 const PACKING=[
-  {sec:'📄 重要文件',items:['護照','機票電子票務截圖','飯店訂單確認信','旅遊保險證明','緊急聯絡名單']},
-  {sec:'💴 金錢',items:['韓元現金（台灣先換）','信用卡 Visa/Mastercard','T-money 交通卡']},
-  {sec:'👗 衣物',items:['夏季衣物（26–32°C）','防曬外套/薄外套','泳衣（海雲台）','舒適好走的鞋子','汗蒸幕內衣（SPA Land用）']},
-  {sec:'🧴 保養',items:['防曬乳 SPF50+','保濕乳液','洗臉卸妝','個人藥品','暈車藥']},
-  {sec:'🔌 電子',items:['手機充電線','行動電源','耳機','轉接頭（韓台同型A/B型）']},
-  {sec:'🛡 安全',items:['防偷拍小卡/App','折疊購物袋','小鏈包']},
+  {sec:'重要文件',items:['護照','機票電子票務截圖','飯店訂單確認信','旅遊保險證明','緊急聯絡名單']},
+  {sec:'金錢',items:['韓元現金（台灣先換）','信用卡 Visa / Mastercard','T-money 交通卡']},
+  {sec:'衣物',items:['夏季衣物（26–32°C）','防曬外套 / 薄外套','泳衣（海雲台）','舒適好走的鞋子','汗蒸幕內衣（SPA Land用）']},
+  {sec:'保養',items:['防曬乳 SPF50+','保濕乳液','洗臉卸妝','個人藥品','暈車藥']},
+  {sec:'電子',items:['手機充電線','行動電源','耳機','轉接頭（韓台同型 A/B型）']},
+  {sec:'安全',items:['防偷拍小卡 / App','折疊購物袋','小鏈包']},
 ];
 
 let curDay=0,curFilter='all',selCatVal='food';
@@ -662,23 +694,53 @@ function renderPacking(){
       total++;
       const ck=!!packState[item];
       if(ck)done++;
-      return `<div class="pack-item${ck?' done':''}" onclick="togglePack(${JSON.stringify(item)})">
+      const key=encodeKey(item);
+      return `<div class="pack-item${ck?' done':''}" id="pi-${key}" onclick="togglePack(${JSON.stringify(item)})">
         <div class="pi-ck">${ck?'✓':''}</div>
-        <div class="pi-name">${item}</div>
+        <div class="pi-name">${item}${ck?'<span class="pi-tag">已確認</span>':''}</div>
       </div>`;
     }).join('');
     return `<div class="psec"><div class="psec-l">${sec.sec}</div>${rows}</div>`;
   }).join('');
+  updatePackProgress(done,total);
+}
+
+function updatePackProgress(done,total){
   const pct=total?Math.round(done/total*100):0;
   document.getElementById('packFill').style.width=pct+'%';
   document.getElementById('packDone').textContent=done;
   document.getElementById('packTotal').textContent=total;
 }
 
+function encodeKey(str){return btoa(unescape(encodeURIComponent(str))).replace(/[^a-zA-Z0-9]/g,'')}
+
 function togglePack(item){
-  packState[item]=!packState[item];
+  const newState=!packState[item];
+  packState[item]=newState;
   localStorage.setItem('bsn2_pack',JSON.stringify(packState));
-  renderPacking();
+  const key=encodeKey(item);
+  const el=document.getElementById('pi-'+key);
+  if(!el){renderPacking();return;}
+  const ck=el.querySelector('.pi-ck');
+  const nm=el.querySelector('.pi-name');
+  if(newState){
+    el.classList.add('done');
+    ck.textContent='✓';
+    if(!nm.querySelector('.pi-tag')){
+      const tag=document.createElement('span');
+      tag.className='pi-tag';
+      tag.textContent='已確認';
+      nm.appendChild(tag);
+    }
+  } else {
+    el.classList.remove('done');
+    ck.textContent='';
+    const tag=nm.querySelector('.pi-tag');
+    if(tag)tag.remove();
+  }
+  let total=0,done=0;
+  PACKING.forEach(s=>s.items.forEach(i=>{total++;if(packState[i])done++;}));
+  updatePackProgress(done,total);
 }
 
 function resetPack(){
